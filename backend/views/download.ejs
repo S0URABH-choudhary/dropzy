@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download File</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: #fff;
+        height: fit-content;
+        width: 40%;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 10px 10px 14px rgba(0,0,0,0.2);
+      }
+      .logo{
+        height: 150px;
+      }
+      .logo img{
+        height: 100%;
+      }
+
+      .tittle{
+        margin-bottom: 6px;
+      }
+      .tittle h1{
+        font-size: 2vw;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 10px 20px;
+        color: #fff;
+        background: #007bff;
+        text-decoration: none;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="logo"><img src="../asscets/download-sd.svg" alt="download-image-svg" height="100px"></div>
+      <div class="tittle">
+        <h1>Download Your File</h1>
+        <p>Link expires in 24 hrs</p>
+        <p>File Name: <strong><%= filename %></strong></p>
+        <p>File Size:<strong><%= (filesize / (1024 * 1024)).toFixed(2) %> MB</strong></p>
+      </div>
+      <a href="<%= download %>" class="btn" download>Download file</a>
+    </div>
+  </body>
+</html>

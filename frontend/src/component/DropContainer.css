@@ -1,0 +1,12 @@
+.animatepath{
+    transform: translateY(0);
+    transform-origin: bottom;
+    transition: transform ease-in-out 0.3s;
+}
+
+.drag .animatepath.front{
+    transform: translateY(-80px) rotateZ(6deg);
+}
+.drag .animatepath.back{
+    transform: translateY(-70px) rotateZ(-6deg);
+}
