@@ -69,7 +69,7 @@ export default function DropContainer() {
 
     try {
       // const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post('https://dropzy-1.onrender.com/api/files', formData, {
+      const response = await axios.post('https://dropzy.onrender.com/api/files', formData, {
         headers: { "Content-Type": "multipart/form-data" },
         onUploadProgress: (progressEvent) => {
           const percentComplete = Math.round(
