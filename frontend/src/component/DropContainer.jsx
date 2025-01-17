@@ -3,6 +3,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { CiFileOn } from "react-icons/ci";
 import axios from "axios";
 import "./DropContainer.css";
+import NameContainer from "./NameContainer";
 
 
 
@@ -14,6 +15,7 @@ export default function DropContainer() {
   const fileInputRef = useRef(null);
   const dloadref = useRef(null);
   const progref = useRef(null);
+  const linkref = useRef(null);
   const [downloadUrl ,setdownloadUrl] = useState(null);
 
 
@@ -38,6 +40,16 @@ export default function DropContainer() {
     uploadfile(droppedFile);
   };
 
+  const copyToClipboard = () => {
+    const texttocopy = `${downloadUrl}`;
+    const temptextarea = document.createElement("textarea");
+    temptextarea.value = texttocopy;
+    document.body.appendChild(temptextarea);
+    temptextarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(temptextarea);
+  };
+
   const handlefilechange = (e) => {
     const selectedfile = e.target.files[0];
     if (!selectedfile) return;
@@ -53,7 +65,7 @@ export default function DropContainer() {
   };
 
   const uploadfile = async (FileToUpload) => {
-    if(uploadProgress != 0){
+    if(progref){
       progref.current.style.display = "none"? "flex": "none";
     }
     if(dloadref){
@@ -69,7 +81,7 @@ export default function DropContainer() {
 
     try {
       // const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post('https://dropzy-1.onrender.com/api/files', formData, {
+      const response = await axios.post('https://dropzy.onrender.com/api/files', formData, {
         headers: { "Content-Type": "multipart/form-data" },
         onUploadProgress: (progressEvent) => {
           const percentComplete = Math.round(
@@ -86,6 +98,7 @@ export default function DropContainer() {
     } catch (error) {
       console.error("upload failed", error);
       alert("upload failed");
+      progref.current.style.display = "none";
     }
   };
   const slowProgressUpdate = (percentComplete) => {
@@ -104,19 +117,12 @@ export default function DropContainer() {
     }, 35); 
   };
 
-  const copyToClipboard = () => {
-    if (downloadUrl) {
-      navigator.clipboard.writeText(downloadUrl)
-      .catch(err => {
-        alert(err.message)
-      });
-    }
-  };
 
   return (
     <>
-      <div className="main h-screen w-screen flex items-center justify-center">
-        <div className="drop-container h-auto w-1/2 relative flex flex-col items-center rounded-[20px] bg-white p-[2vw] shadow-[10px_10px_14px_rgba(0,0,0,0.2)]">
+      <div className="main relative h-screen w-screen flex flex-col items-center justify-center">
+        <NameContainer/>
+        <div className="drop-container h-auto w-[40%] max-md:w-[90%] max-lg:w-[90%] relative flex flex-col items-center rounded-[20px] bg-white p-[2vw] shadow-[10px_10px_14px_rgba(0,0,0,0.2)]">
           <div
             className={`drop-area h-[250px] w-full border-blue-500 border-dashed border-[2px] rounded-[calc(20px-1vw)] p-4 flex flex-col items-center justify-center gap-4 ${
               draging ? "drag bg-blue-50" : ""
@@ -154,8 +160,8 @@ export default function DropContainer() {
                   fill="#536DFE"
                 />
               </svg>
-            </div>
-            <h3>
+            </div >
+            <h3 className="flex ">
               Drag and Drop file here or{" "}
               <span
                 className="text-blue-500 underline cursor-pointer"
@@ -174,19 +180,19 @@ export default function DropContainer() {
               onChange={handlefilechange}
             />
           </div>
-          <dir className="response-container h-auto w-full m-[1vw] ">
-            <div ref={progref} className=" hidden progress-container relative p-[1vw] items-center h-[70px] w-full border-[2px] border-blue-200  rounded-[20px] overflow-hidden ">
+          <dir className="response-container h-auto w-full ">
+            <div ref={progref} className=" hidden mt-[1vw] progress-container relative p-[1vw] items-center h-[70px] w-full border-[2px] border-blue-200  rounded-[20px] overflow-hidden ">
               <div style={{width:`${uploadProgress}% `, transitionProperty:"width", transition:"ease .4s"}} className=" h-full w-full absolute left-0 bg-blue-50 z-[0]"></div>
                 <div className="progress-left flex items-center justify-center h-full w-fit mr-2 z-[1]"><CiFileOn className="text-[30px] font-thin" /></div>
                 <div className="progress-Right w-full z-[1]">
-                  <p className="text-{4em}">{fileDetails.name}</p>
+                  <p className=" truncate text-{4em} p-[1vw] max-md:w-[85%] max-lg:w-[95%]">{fileDetails.name}</p>
                   <p className="text-sm text-stone-600">Uploading...{uploadProgress}</p>
                 <div style={{width:`${uploadProgress}% `, transitionProperty:"width", transition:"ease .4s"}} className="progressbar h-[3px] bg-blue-300"></div>
                 </div>
             </div>
             <div ref={dloadref} className="hidden download-link-container h-auto flex-col items-center">
-              <h3 className="mb-[10px]">Link expires in 24 hrs</h3>
-              <div className="download-link h-[35px] w-full border-[2px] flex items-center justify-between  rounded-[10px] p-[1vw] border-dashed bg-blue-50 text-stone-600 border-blue-400"><p className="truncate" >{downloadUrl}</p><MdOutlineContentCopy onClick={copyToClipboard()} className="text-lg cursor-pointer"/></div>
+              <h3 className="mb-[10px] mt-[10px]">Link expires in 24 hrs</h3>
+              <div className="download-link h-[35px] w-full border-[2px] flex items-center justify-between  rounded-[10px] p-[1vw] border-dashed bg-blue-50 text-stone-600 border-blue-400"><p className="truncate max-lg:ml-[20px]" ref={linkref} >{downloadUrl}</p><MdOutlineContentCopy onClick={copyToClipboard} className="text-lg max-md:text-4xl cursor-pointer"/></div>
             </div>
           </dir>
         </div>
