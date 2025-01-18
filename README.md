@@ -83,6 +83,9 @@ Ensure you have the following installed on your system:
 ```
 file-sharing-app/
 ├── backend/
+│   ├── asscets/
+│   ├── config/
+│   │   └── db.js
 │   ├── models/
 │   │   └── filemodel.js
 │   ├── routes/
