@@ -18,7 +18,8 @@ This project is a full-stack file-sharing web application that allows users to u
 ## Tech Stack
 
 - **Frontend**:
-  - EJS Templates
+  - React
+  - EJS Template
   - Tailwind CSS
 - **Backend**:
   - Node.js
