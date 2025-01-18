@@ -28,11 +28,7 @@
         border-radius: 20px;
         box-shadow: 10px 10px 14px rgba(0, 0, 0, 0.2);
       }
-      @media (max-width: 768px) {
-        .container {
-        width: 90%;
-        }
-      }
+
       .logo {
         height: 130px;
       }
@@ -54,6 +50,21 @@
         background: #007bff;
         text-decoration: none;
         border-radius: 4px;
+      }
+      @media (max-width: 768px) {
+        .container {
+          width: 90%;
+        }
+
+        .tittle h1 {
+          font-size: 4vw;
+        }
+      }
+      @media (max-width: 425px) {
+
+        .tittle h1 {
+          font-size: 7vw;
+        }
       }
     </style>
   </head>

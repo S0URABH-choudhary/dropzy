@@ -181,11 +181,11 @@ export default function DropContainer() {
             />
           </div>
           <dir className="response-container h-auto w-full ">
-            <div ref={progref} className=" hidden mt-[1vw] progress-container relative p-[1vw] items-center h-[70px] w-full border-[2px] border-blue-200  rounded-[20px] overflow-hidden ">
+            <div ref={progref} className="hidden mt-[1vw] progress-container relative p-[1vw] items-center h-[70px] w-full border-[2px] border-blue-200  rounded-[20px] overflow-hidden ">
               <div style={{width:`${uploadProgress}% `, transitionProperty:"width", transition:"ease .4s"}} className=" h-full w-full absolute left-0 bg-blue-50 z-[0]"></div>
                 <div className="progress-left flex items-center justify-center h-full w-fit mr-2 z-[1]"><CiFileOn className="text-[30px] font-thin" /></div>
                 <div className="progress-Right w-full z-[1]">
-                  <p className=" truncate text-{4em} p-[1vw] max-md:w-[85%] max-lg:w-[95%]">{fileDetails.name}</p>
+                  <p className=" truncate text-{4em} max-md:w-[85%] max-lg:w-[95%]">{fileDetails.name}</p>
                   <p className="text-sm text-stone-600">Uploading...{uploadProgress}</p>
                 <div style={{width:`${uploadProgress}% `, transitionProperty:"width", transition:"ease .4s"}} className="progressbar h-[3px] bg-blue-300"></div>
                 </div>
