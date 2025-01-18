@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a full-stack file-sharing web application that allows users to upload files and share download links. The backend is built with Node.js, Express, and MongoDB, while the frontend is styled with Tailwind CSS and implemented using EJS templates.
+This project is a full-stack file-sharing web application that allows users to upload files and share download links. The backend is built with Node.js, Express, and MongoDB, while the frontend is styled with Tailwind CSS and implemented using react.
 
 ---
 
