@@ -90,6 +90,7 @@ file-sharing-app/
 │   │   └── showroute.js
 │   ├── views/
 │   │   └── download.ejs
+│   ├── uploads/
 │   ├── app.js
 │   └── server.js
 ├── public/
