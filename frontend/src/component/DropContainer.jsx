@@ -122,7 +122,7 @@ export default function DropContainer() {
     <>
       <div className="main relative h-screen w-screen flex flex-col items-center justify-center">
         <NameContainer/>
-        <div className="drop-container h-auto w-[40%] max-md:w-[90%] max-lg:w-[90%] relative flex flex-col items-center rounded-[20px] bg-white p-[2vw] shadow-[10px_10px_14px_rgba(0,0,0,0.2)]">
+        <div className="drop-container h-auto w-[40%] mt-20 max-lg:w-[90%] relative flex flex-col items-center rounded-[20px] bg-white p-[2vw] shadow-[10px_10px_14px_rgba(0,0,0,0.2)]">
           <div
             className={`drop-area h-[250px] w-full border-blue-500 border-dashed border-[2px] rounded-[calc(20px-1vw)] p-4 flex flex-col items-center justify-center gap-4 ${
               draging ? "drag bg-blue-50" : ""
