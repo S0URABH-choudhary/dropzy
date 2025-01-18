@@ -15,6 +15,11 @@
         height: 100vh;
         background-color: #f4f4f4;
       }
+      @media (max-width: 768px) {
+        .container {
+        width: 90%;
+        }
+      }
       .container {
         position: relative;
         display: flex;
@@ -26,19 +31,19 @@
         width: 40%;
         padding: 20px;
         border-radius: 20px;
-        box-shadow: 10px 10px 14px rgba(0,0,0,0.2);
+        box-shadow: 10px 10px 14px rgba(0, 0, 0, 0.2);
       }
-      .logo{
+      .logo {
         height: 130px;
       }
-      .logo img{
+      .logo img {
         height: 90%;
       }
 
-      .tittle{
+      .tittle {
         margin-bottom: 6px;
       }
-      .tittle h1{
+      .tittle h1 {
         font-size: 2vw;
       }
       .btn {
@@ -54,12 +59,22 @@
   </head>
   <body>
     <div class="container">
-        <div class="logo"><img src="../asscets/download-sd.svg" alt="download-image-svg" height="100px"></div>
+      <div class="logo">
+        <img
+          src="../asscets/download-sd.svg"
+          alt="download-image-svg"
+          height="100px"
+        />
+      </div>
       <div class="tittle">
         <h1>Download Your File</h1>
         <p>Link expires in 24 hrs</p>
         <p>File Name: <strong><%= filename %></strong></p>
-        <p>File Size:<strong><%= (filesize / (1024 * 1024)).toFixed(2) %> MB</strong></p>
+        <p>
+          File Size:<strong
+            ><%= (filesize / (1024 * 1024)).toFixed(2) %> MB</strong
+          >
+        </p>
       </div>
       <a href="<%= download %>" class="btn" download>Download file</a>
     </div>
