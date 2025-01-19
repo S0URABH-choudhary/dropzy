@@ -3,8 +3,8 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { CiFileOn } from "react-icons/ci";
 import axios from "axios";
 import "./DropContainer.css";
-import NameContainer from "./NameContainer";
-import Email from "./email";
+import NameContainer from "./NameContainer.jsx";
+import Email from "./Email.jsx";
 
 
 
