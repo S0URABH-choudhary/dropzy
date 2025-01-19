@@ -9,7 +9,7 @@ function Email(props) {
         e.preventDefault();
         const downloadLink = props.downloadLink;
         try{
-          const response = await fetch("http://localhost:5000/api/files/send-email",{
+          const response = await fetch("https://dropzy.onrender.com/api/files/send-email",{
             method:"POST",
             headers: {"Content-type":"application/json"},
             body: JSON.stringify({ senderEmail , receiverEmail, downloadLink}),
