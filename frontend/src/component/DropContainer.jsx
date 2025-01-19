@@ -4,6 +4,7 @@ import { CiFileOn } from "react-icons/ci";
 import axios from "axios";
 import "./DropContainer.css";
 import NameContainer from "./NameContainer";
+import Email from "./email";
 
 
 
@@ -17,6 +18,7 @@ export default function DropContainer() {
   const progref = useRef(null);
   const linkref = useRef(null);
   const [downloadUrl ,setdownloadUrl] = useState(null);
+  const [showemailform, setshowemailform] = useState(false);
 
 
 
@@ -70,6 +72,7 @@ export default function DropContainer() {
     }
     if(dloadref){
       dloadref.current.style.display ="none";
+      setshowemailform(false);
     }
     if (!FileToUpload) {
       alert("no file is selected");
@@ -99,6 +102,9 @@ export default function DropContainer() {
       console.error("upload failed", error);
       alert("upload failed");
       progref.current.style.display = "none";
+      if(!downloadUrl){
+        dloadref.current.style.display ="none";
+      }
     }
   };
   const slowProgressUpdate = (percentComplete) => {
@@ -112,6 +118,7 @@ export default function DropContainer() {
         setUploadProgress(0);
         progref.current.style.display = "none";
         dloadref.current.style.display = "flex";
+        setshowemailform(true);
         clearInterval(interval);
       }
     }, 35); 
@@ -122,7 +129,7 @@ export default function DropContainer() {
     <>
       <div className="main relative h-screen w-screen flex flex-col items-center justify-center">
         <NameContainer/>
-        <div className="drop-container h-auto w-[40%] mt-20 max-lg:w-[90%] relative flex flex-col items-center rounded-[20px] bg-white p-[2vw] shadow-[10px_10px_14px_rgba(0,0,0,0.2)]">
+        <div className="drop-container h-auto w-[40%] mt-32 max-lg:w-[90%] relative flex flex-col items-center rounded-[20px] bg-white p-[2vw] shadow-[10px_10px_14px_rgba(0,0,0,0.2)]">
           <div
             className={`drop-area h-[250px] w-full border-blue-500 border-dashed border-[2px] rounded-[calc(20px-1vw)] p-4 flex flex-col items-center justify-center gap-4 ${
               draging ? "drag bg-blue-50" : ""
@@ -194,6 +201,7 @@ export default function DropContainer() {
               <h3 className="mb-[10px] mt-[10px]">Link expires in 24 hrs</h3>
               <div className="download-link h-[35px] w-full border-[2px] flex items-center justify-between  rounded-[10px] p-[1vw] border-dashed bg-blue-50 text-stone-600 border-blue-400"><p className="truncate max-lg:ml-[20px]" ref={linkref} >{downloadUrl}</p><MdOutlineContentCopy onClick={copyToClipboard} className="text-lg max-md:text-4xl cursor-pointer"/></div>
             </div>
+            {showemailform?<Email downloadLink={downloadUrl}/>:""}
           </dir>
         </div>
       </div>

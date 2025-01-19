@@ -42,28 +42,37 @@
       .tittle h1 {
         font-size: 2vw;
       }
+
+      #filename{
+        width: max-content;
+      }
+
       .btn {
         display: inline-block;
         margin-top: 6px;
         padding: 10px 20px;
         color: #fff;
+        width: max-content;
         background: #007bff;
         text-decoration: none;
         border-radius: 4px;
       }
       @media (max-width: 768px) {
         .container {
-          width: 90%;
+          width: 85%;
         }
 
         .tittle h1 {
           font-size: 4vw;
         }
       }
-      @media (max-width: 425px) {
+      @media (max-width: 426px) {
 
         .tittle h1 {
           font-size: 7vw;
+        }
+        #filename{
+          font-size: 3.5vw;
         }
       }
     </style>
@@ -80,7 +89,7 @@
       <div class="tittle">
         <h1>Download Your File</h1>
         <p>Link expires in 24 hrs</p>
-        <p>File Name: <strong><%= filename %></strong></p>
+        <p id="filename">File Name: <strong><%= filename %></strong></p>
         <p>
           File Size:<strong
             ><%= (filesize / (1024 * 1024)).toFixed(2) %> MB</strong
